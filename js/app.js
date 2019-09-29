@@ -2,7 +2,7 @@
 * @Author: Admin
 * @Date:   2019-09-29 19:36:22
 * @Last Modified by:   Admin
-* @Last Modified time: 2019-09-30 05:58:40
+* @Last Modified time: 2019-09-30 06:14:17
 */
 console.log("开始了")
 
@@ -54,4 +54,9 @@ function addCss(el,config){
     for(let i=0;i<cssList.length;i++){
         el.style[cssList[i]]=config[cssList[i]];
     }
+}
+
+window.onload=function(){
+    var EleContent = document.getElementById("contentv");
+    console.log((getH()-40)+"px")
 }
