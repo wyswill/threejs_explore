@@ -2,7 +2,7 @@
 * @Author: Admin
 * @Date:   2019-09-29 19:36:39
 * @Last Modified by:   Admin
-* @Last Modified time: 2019-09-30 06:30:47
+* @Last Modified time: 2019-09-30 06:44:05
 */
 *{
     margin:0;
@@ -69,12 +69,15 @@
     -webkit-transform:rotate(90deg); /* Safari 和 Chrome */
 }
 .card{
+    display:flex;
+    padding:3px;
     border-radius:5px;
     color:#fff;
+    /* writing-mode: vertical-rl; */
 }
 
 .card>.title{
-
+    font-family:"title";
 }
 
 .title{
