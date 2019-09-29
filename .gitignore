@@ -1,0 +1,15 @@
+###MySelft###
+
+*.zip
+*.7z
+*.tar.*
+*.ini
+*.settings
+*-config.json
+*.config
+.gitignore
+
+.git/
+test/
+node_modules/
+.vscode/

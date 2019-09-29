@@ -1,0 +1,15 @@
+/*
+* @Author: Admin
+* @Date:   2019-09-29 19:36:39
+* @Last Modified by:   Admin
+* @Last Modified time: 2019-09-29 19:40:42
+*/
+*{
+    margin:0;
+    padding: 0;
+}
+.main{
+    position: fixed;
+    width: 100%;
+    height:100%;
+}
