@@ -2,7 +2,7 @@
 * @Author: Admin
 * @Date:   2019-09-29 19:36:22
 * @Last Modified by:   Admin
-* @Last Modified time: 2019-09-30 05:58:40
+* @Last Modified time: 2019-09-30 06:16:40
 */
 console.log("开始了")
 
@@ -11,7 +11,7 @@ console.log("开始了")
  * @return {number} 屏幕的高度
  */
 function getH(){
-    return window.screen.height
+    return window.screen.availHeight
 }
 /**
  * JSON-map 对对象进行遍历操作
@@ -54,4 +54,12 @@ function addCss(el,config){
     for(let i=0;i<cssList.length;i++){
         el.style[cssList[i]]=config[cssList[i]];
     }
+}
+
+window.onload=function(){
+    var EleContent = document.getElementById("contentv");
+    var screenHeight=getH()-40;
+    addCss(EleContent,{
+        "height":`${screenHeight}px`
+    });
 }
