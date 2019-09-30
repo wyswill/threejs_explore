@@ -2,7 +2,7 @@
 * @Author: Admin
 * @Date:   2019-09-29 19:36:22
 * @Last Modified by:   Admin
-* @Last Modified time: 2019-10-01 04:13:18
+* @Last Modified time: 2019-10-01 04:21:37
 */
 console.log("开始了")
 
@@ -64,7 +64,7 @@ function addCss(el,config){
     for(let i=0;i<cssList.length;i++){
         var index = cssList[i].indexOf("-")
         if(index!=-1){
-            console.log(cssList[index]);
+            cssList[i].replace(cssList[i][index]+cssList[i][index+1],""+UpperCase(cssList[i][index+1]))
         }
         el.style[cssList[i]]=config[cssList[i]];
     }
