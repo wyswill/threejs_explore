@@ -1,17 +1,16 @@
 (function () {
 	let canvasv = document.getElementById('contentv');
 	let canvas = canvasv.getElementsByTagName('canvas')[0];
+	let ctx = null;
 	if (canvas.getContext) {
-		let ctx = canvas.getContext('2d');
-		main(ctx);
+		ctx = canvas.getContext('2d');
+		window.requestAnimationFrame(main);
 	}
 
-	function main(ctx) {
-		// rectRound(ctx, 10, 10, 100, 100, 10);
-		// star4s(ctx, 0, 0, 400, 400, 10, 50);
-		// star5p(ctx, 200, 200, 40, 0);
-		regularPolygon(ctx, 200, 200, 50, 6, 0);
-		ctx.stroke();
+	function main() {
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		
+		window.requestAnimationFrame(main);
 	}
 
 	/**
