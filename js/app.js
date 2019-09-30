@@ -2,7 +2,7 @@
 * @Author: Admin
 * @Date:   2019-09-29 19:36:22
 * @Last Modified by:   Admin
-* @Last Modified time: 2019-10-01 01:21:24
+* @Last Modified time: 2019-10-01 04:13:18
 */
 console.log("开始了")
 
@@ -37,7 +37,17 @@ function addAttr(ele,config){
         ele.setAttribute(`${index}`,el)
     });
 }
-
+/**
+ * 对字符进行大写转换
+ * @param {String} args 需要转换的字符
+ */
+function UpperCase(args){
+    if((typeof args) =="string"){
+        return args.toUpperCase();
+    }else{
+        throw Error("arguments is not String,So have this Error")
+    }
+}
 /**
  * 添加Css样式
  * @param {Element|NodeList} el     目标元素或者元素列表
@@ -52,6 +62,10 @@ function addCss(el,config){
         }
     }
     for(let i=0;i<cssList.length;i++){
+        var index = cssList[i].indexOf("-")
+        if(index!=-1){
+            console.log(cssList[index]);
+        }
         el.style[cssList[i]]=config[cssList[i]];
     }
 }
