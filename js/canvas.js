@@ -7,14 +7,16 @@
 	}
 
 	function main(ctx) {
-		star4s(ctx, 0, 0, 400, 400, 10, 100);
-		// star5p(ctx, 200, 200, 40, Math.PI);
-		// ctx.stroke();
+		// rectRound(ctx, 10, 10, 100, 100, 10);
+		// star4s(ctx, 0, 0, 400, 400, 10, 50);
+		star5p(ctx, 200, 200, 40, 0);
+		ctx.fillStyle = "orange";
+		ctx.fill();
 	}
 
 	/**
 	 * 圆角矩形
-	 * @param {*} ctx 
+	 * @param {CanvasRenderingContext2D} ctx 
 	 * @param {number} x X 坐标
 	 * @param {number} y Y 坐标
 	 * @param {number} h 高度
@@ -22,42 +24,44 @@
 	 * @param {number} r 圆角半径
 	 */
 	function rectRound(ctx, x, y, h, w, r) {
+		const a = Math.PI / 2;
 		if (h < 2 * r) r = h / 2;
 		if (w < 2 * r) r = w / 2;
+		let x0 = x + r, x1 = x + w - r, x2 = x + w,
+			y0 = y + r, y1 = y + h - r, y2 = y + h;
 		ctx.beginPath();
-		ctx.moveTo(x + r, y);
-		ctx.lineTo(x + w - r, y); // 上边
-		ctx.arc(x + w - r, y + r, 0, Math.PI / 2, false); // 右上圆角
-		ctx.lineTo(x + w, y + h - r); // 右边
-		ctx.arc(x + w - r, y + h - r, 0, Math.PI / 2, false); // 右下圆角
-		ctx.lineTo(x + r, y + h); // 下边
-		ctx.arc(x + r, y + h - r, 0, Math.PI / 2, false); // 左下圆角
-		ctx.lineTo(x, y + r); // 左边
-		ctx.arc(r, r, 0, Math.PI / 2, false); // 左上圆角
-		ctx.clearPaht();
+		ctx.moveTo(x, y0);
+		ctx.arc(x0, y0, r, 2 * a, -a, false);
+		ctx.lineTo(x1, y);
+		ctx.arc(x1, y0, r, -a, 0, false);
+		ctx.lineTo(x2, y1);
+		ctx.arc(x1, y1, r, 0, a, false);
+		ctx.lineTo(x0, y2);
+		ctx.arc(x0, y1, r, a, 2 * a, false);
+		ctx.closePath();
 	}
 
 	/**
 	 * 四芒星群
-	 * @param {*} ctx 
+	 * @param {CanvasRenderingContext2D} ctx 
 	 * @param {number} x X 坐标
 	 * @param {number} y Y 坐标
 	 * @param {number} w 宽度
 	 * @param {number} h 高度
 	 * @param {number} r 星芒半径
-	 * @param {number} num 数量
+	 * @param {number} n 数量
 	 */
-	function star4s(ctx, x, y, w, h, r, num) {
+	function star4s(ctx, x, y, w, h, r, n) {
 		const x0 = x + r, y0 = y + r,
 			x1 = x + w - r, y1 = y + h - r;
-		for (let i = 0; i < num; i++) {
-			star4(ctx, randomInt(x0, x1), randomInt(y0, y1), r, '#ffffff');
+		for (let i = 0; i < n; i++) {
+			star4(ctx, Math.floor(randomInt(x0, x1)), Math.floor(randomInt(y0, y1)), r, '#ffffff');
 		}
 	}
 
 	/**
 	 * 四芒星
-	 * @param {*} ctx 
+	 * @param {CanvasRenderingContext2D} ctx 
 	 * @param {number} x 中心 X 坐标
 	 * @param {number} y 中心 Y 坐标
 	 * @param {number} r 星芒半径
@@ -96,7 +100,7 @@
 
 	/**
 	 * 正五角星
-	 * @param {*} ctx 
+	 * @param {CanvasRenderingContext2D} ctx 
 	 * @param {number} x 中心 X 坐标
 	 * @param {number} y 中心 Y 坐标
 	 * @param {number} r 半径
