@@ -2,7 +2,7 @@
 * @Author: Admin
 * @Date:   2019-09-29 19:36:22
 * @Last Modified by:   Admin
-* @Last Modified time: 2019-10-01 04:21:37
+* @Last Modified time: 2019-10-01 04:30:10
 */
 console.log("开始了")
 
@@ -56,7 +56,7 @@ function UpperCase(args){
 function addCss(el,config){
     var key = Object.keys;
     var cssList = key(config);
-    if(el.length){
+    if(el.length!=false){
         for(let n=0;n<el.length;n++){
             addCss(el[n],config)
         }
@@ -73,7 +73,6 @@ function addCss(el,config){
 window.onload=function(){
     var EleContent = document.getElementById("contentv");
     let canvas = document.getElementsByTagName("canvas");
-    console.log(EleContent.clientHeight)
     console.log((getH()-40)+"px")
     var screenHeight=getH()-40;
     addCss(EleContent,{
