@@ -22,6 +22,8 @@
 	 * @param {number} r 圆角半径
 	 */
 	function rectRound(ctx, x, y, h, w, r) {
+		if (h < 2 * r) r = h / 2;
+		if (w < 2 * r) r = w / 2;
 		ctx.beginPath();
 		ctx.moveTo(x + r, y);
 		ctx.lineTo(x + w - r, y); // 上边
@@ -117,15 +119,15 @@
 			} else {
 				a0 += Math.PI - a1 * 2;
 			}
-			tx = tx + d * Math.cos(a0);
-			ty = ty + d * Math.sin(a0);
+			tx += d * Math.cos(a0);
+			ty += d * Math.sin(a0);
 			ctx.lineTo(tx, ty);
 		}
 		ctx.closePath();
 	}
 
 	/**
-	 * 范围内随机
+	 * 范围内随机浮点数
 	 * @param {number} a 最小值
 	 * @param {number} b 最大值
 	 */
