@@ -8,6 +8,8 @@
 
 	function main(ctx) {
 		star4s(ctx, 0, 0, 400, 400, 10, 100);
+		// star5p(ctx, 200, 200, 40, Math.PI);
+		// ctx.stroke();
 	}
 
 	/**
@@ -54,8 +56,8 @@
 	/**
 	 * 四芒星
 	 * @param {*} ctx 
-	 * @param {number} x X 坐标
-	 * @param {number} y Y 坐标
+	 * @param {number} x 中心 X 坐标
+	 * @param {number} y 中心 Y 坐标
 	 * @param {number} r 星芒半径
 	 * @param {string} c 颜色
 	 */
@@ -100,11 +102,11 @@
 	 */
 	function star5p(ctx, x, y, r, a = 0) {
 		let a0 = a - Math.PI / 2;
-		const a1 = Math.PI / 5;
+		const a1 = Math.PI / 10;
 		const a2 = Math.PI / 2 - a1;
-		const d = Math.floor(Math.abs(r / Math.sin(a1)));
-		let tx = Math.floor(x + r * Math.cos(a0)),
-			ty = Math.floor(y - r * Math.sin(a0));
+		const d = Math.abs(r / 2 / Math.sin(a1));
+		let tx = x + r * Math.cos(a0),
+			ty = y + r * Math.sin(a0);
 		ctx.beginPath();
 		ctx.moveTo(tx, ty);
 		for (let i = 0; i < 9; i++) {
@@ -115,19 +117,19 @@
 			} else {
 				a0 += Math.PI - a1 * 2;
 			}
-			tx = Math.floor(tx + d * Math.cos(a0));
-			ty = Math.floor(ty - d * Math.sin(a0));
+			tx = tx + d * Math.cos(a0);
+			ty = ty + d * Math.sin(a0);
 			ctx.lineTo(tx, ty);
 		}
-		ctx.clearPaht();
+		ctx.closePath();
 	}
 
 	/**
-	 * 范围内随机整数
+	 * 范围内随机
 	 * @param {number} a 最小值
 	 * @param {number} b 最大值
 	 */
 	function randomInt(a, b) {
-		return Math.floor(Math.random() * (b - a)) + a;
+		return Math.random() * (b - a) + a;
 	}
 })();
