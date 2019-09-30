@@ -28,6 +28,9 @@
 .content{
     width:100%;
 }
+.content>canvas{
+    background: #000;
+}
 .btn{
     border-radius:6px;
     margin:4px auto;

@@ -1,15 +1,13 @@
 (function () {
 	let canvasv = document.getElementById('contentv');
 	let canvas = canvasv.getElementsByTagName('canvas')[0];
-	//canvas.height = canvasv.height;
-	//canvas.width = canvasv.width;
 	if (canvas.getContext) {
 		let ctx = canvas.getContext('2d');
 		main(ctx);
 	}
 
 	function main(ctx) {
-		bgStar(ctx, 10, 10, 80, 80, 20, 10);
+		star4s(ctx, 0, 0, 400, 400, 10, 100);
 	}
 
 	/**
@@ -36,42 +34,55 @@
 	}
 
 	/**
-	 * 星星背景
+	 * 四芒星群
 	 * @param {*} ctx 
 	 * @param {number} x X 坐标
 	 * @param {number} y Y 坐标
 	 * @param {number} w 宽度
 	 * @param {number} h 高度
-	 * @param {number} r 半径
+	 * @param {number} r 星芒半径
 	 * @param {number} num 数量
 	 */
-	function bgStar(ctx, x, y, w, h, r, num) {
-		let defultStrokeStyle = ctx.strokeStyle;
-		let clg_y = ctx.createLinearGradient(0, 0, 0, r * 2);
-		let clg_x = ctx.createLinearGradient(0, 0, r * 2, 0);
-		clg_0.addColorStop(0, 'rgba(0,0,0,0)');
-		clg_0.addColorStop(0.5, 'rgba(0,0,0,1)');
-		clg_0.addColorStop(1, 'rgba(0,0,0,0)');
-		clg_1.addColorStop(0, 'rgba(0,0,0,0)');
-		clg_1.addColorStop(0.5, 'rgba(0,0,0,1)');
-		clg_1.addColorStop(1, 'rgba(0,0,0,0)');
+	function star4s(ctx, x, y, w, h, r, num) {
 		for (let i = 0; i < num; i++) {
-			let tx = randomInt(x, x + w),
-				ty = randomInt(y, y + h);
-			console.log('star: ' + tx + ',' + ty);
-			//ctx.lineWidth = 2;
-			ctx.strokeStyle = clg_x;
-			ctx.beginPath();
-			ctx.moveTo(tx - r, ty);
-			ctx.lineTo(tx + r, ty);
-			ctx.stroke();
-			ctx.strokeStyle = clg_y;
-			ctx.beginPath();
-			ctx.moveTo(tx, ty - r);
-			ctx.lineTo(tx, ty + r);
-			ctx.stroke();
+			star4(randomInt(x + r, x + w - r), randomInt(y + r, y + h - r), r, '#ffffff');
 		}
+	}
+
+	/**
+	 * 四芒星
+	 * @param {number} x X 坐标
+	 * @param {number} y Y 坐标
+	 * @param {number} r 星芒半径
+	 * @param {string} c 颜色
+	 */
+	function star4(ctx, x, y, r, c) {
+		let defultStrokeStyle = ctx.strokeStyle;
+		ctx.strokeStyle = newCLG(x, y, true);
+		ctx.beginPath();
+		ctx.moveTo(tx - r, ty);
+		ctx.lineTo(tx + r, ty);
+		ctx.stroke();
+		ctx.strokeStyle = newCLG(x, y, false);
+		ctx.beginPath();
+		ctx.moveTo(tx, ty - r);
+		ctx.lineTo(tx, ty + r);
+		ctx.stroke();
 		ctx.strokeStyle = defultStrokeStyle;
+
+		/**
+		 * 横纵星芒
+		 * @param {number} x 中心 X 坐标
+		 * @param {number} y 中心 Y 坐标
+		 * @param {boolean} isH true 为横向，false 为纵向
+		 */
+		function newCLG(x, y, isH) {
+			let clg = isH ? ctx.createLinearGradient(x - r, y, x + r, y) : ctx.createLinearGradient(x, y - r, x, y + r);
+			clg.addColorStop(0, 'rgba(0,0,0,0)');
+			clg.addColorStop(0.5, c);
+			clg.addColorStop(1, 'rgba(0,0,0,0)');
+			return clg;
+		}
 	}
 
 	/**
