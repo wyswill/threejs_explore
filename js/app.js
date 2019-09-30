@@ -2,7 +2,7 @@
 * @Author: Admin
 * @Date:   2019-09-29 19:36:22
 * @Last Modified by:   Admin
-* @Last Modified time: 2019-10-01 04:30:10
+* @Last Modified time: 2019-10-01 04:45:08
 */
 console.log("开始了")
 
@@ -56,7 +56,7 @@ function UpperCase(args){
 function addCss(el,config){
     var key = Object.keys;
     var cssList = key(config);
-    if(el.length!=false){
+    if(el.length!=null){
         for(let n=0;n<el.length;n++){
             addCss(el[n],config)
         }
