@@ -1,15 +1,18 @@
-(function () {
+var Canvas = (function () {
 	let canvasv = document.getElementById('contentv');
 	let canvas = canvasv.getElementsByTagName('canvas')[0];
 	let ctx = null;
 	if (canvas.getContext) {
 		ctx = canvas.getContext('2d');
 		window.requestAnimationFrame(main);
+		canvas.addEventListener('mouseover', function (e) { });
+		canvas.addEventListener('mouseout', function (e) { });
+		canvas.addEventListener('mousedown', function (e) {  })
 	}
 
 	function main() {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
-		
+
 		window.requestAnimationFrame(main);
 	}
 
@@ -139,17 +142,14 @@
 	 * @param {number} a 旋转角度
 	 */
 	function regularPolygon(ctx, x, y, r, n, a = 0) {
+		if (!ctx || n < 3) return;
 		const a1 = Math.PI * 2 / n;
 		let a0 = a - Math.PI / 2;
-		let tx = Math.cos(a0) * r + x,
-			ty = Math.sin(a0) * r + y;
 		ctx.beginPath();
-		ctx.moveTo(tx, ty);
+		ctx.moveTo(Math.cos(a0) * r + x, Math.sin(a0) * r + y);
 		for (let i = 0; i < n; i++) {
 			a0 += a1;
-			tx = r * Math.cos(a0) + x;
-			ty = r * Math.sin(a0) + y;
-			ctx.lineTo(tx, ty);
+			ctx.lineTo(r * Math.cos(a0) + x, r * Math.sin(a0) + y);
 		}
 		ctx.closePath();
 	}
@@ -161,5 +161,10 @@
 	 */
 	function randomInt(a, b) {
 		return Math.random() * (b - a) + a;
+	}
+
+	return {
+		randomInt: randomInt,
+		rectRound: rectRound
 	}
 })();

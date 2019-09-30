@@ -2,7 +2,7 @@
 * @Author: Admin
 * @Date:   2019-09-29 19:36:22
 * @Last Modified by:   Admin
-* @Last Modified time: 2019-09-30 21:42:15
+* @Last Modified time: 2019-10-01 01:21:24
 */
 console.log("开始了")
 
@@ -58,6 +58,8 @@ function addCss(el,config){
 
 window.onload=function(){
     var EleContent = document.getElementById("contentv");
+    let canvas = document.getElementsByTagName("canvas");
+    console.log(EleContent.clientHeight)
     console.log((getH()-40)+"px")
     var screenHeight=getH()-40;
     addCss(EleContent,{

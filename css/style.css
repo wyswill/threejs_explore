@@ -2,7 +2,7 @@
 * @Author: Admin
 * @Date:   2019-09-29 19:36:39
 * @Last Modified by:   Admin
-* @Last Modified time: 2019-09-30 06:44:05
+* @Last Modified time: 2019-09-30 23:39:07
 */
 *{
     margin:0;
@@ -29,7 +29,7 @@
     width:100%;
 }
 .content>canvas{
-    background: #000;
+    /* background: #000; */
 }
 .btn{
     border-radius:6px;
