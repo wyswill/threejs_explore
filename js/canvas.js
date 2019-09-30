@@ -9,9 +9,9 @@
 	function main(ctx) {
 		// rectRound(ctx, 10, 10, 100, 100, 10);
 		// star4s(ctx, 0, 0, 400, 400, 10, 50);
-		star5p(ctx, 200, 200, 40, 0);
-		ctx.fillStyle = "orange";
-		ctx.fill();
+		// star5p(ctx, 200, 200, 40, 0);
+		regularPolygon(ctx, 200, 200, 50, 6, 0);
+		ctx.stroke();
 	}
 
 	/**
@@ -125,6 +125,31 @@
 			}
 			tx += d * Math.cos(a0);
 			ty += d * Math.sin(a0);
+			ctx.lineTo(tx, ty);
+		}
+		ctx.closePath();
+	}
+
+	/**
+	 * 正多边形
+	 * @param {CanvasRenderingContext2D} ctx
+	 * @param {number} x 中心 X 坐标
+	 * @param {number} y 中心 Y 坐标
+	 * @param {number} r 半径
+	 * @param {number} n 边数
+	 * @param {number} a 旋转角度
+	 */
+	function regularPolygon(ctx, x, y, r, n, a = 0) {
+		const a1 = Math.PI * 2 / n;
+		let a0 = a - Math.PI / 2;
+		let tx = Math.cos(a0) * r + x,
+			ty = Math.sin(a0) * r + y;
+		ctx.beginPath();
+		ctx.moveTo(tx, ty);
+		for (let i = 0; i < n; i++) {
+			a0 += a1;
+			tx = r * Math.cos(a0) + x;
+			ty = r * Math.sin(a0) + y;
 			ctx.lineTo(tx, ty);
 		}
 		ctx.closePath();
