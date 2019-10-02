@@ -118,23 +118,14 @@
 	function star5p(ctx, x, y, r, a = 0) {
 		let a0 = a - Math.PI / 2;
 		const a1 = Math.PI / 10;
-		const a2 = Math.PI / 2 - a1;
-		const d = Math.abs(r / 2 / Math.sin(a1));
-		let tx = x + r * Math.cos(a0),
-			ty = y + r * Math.sin(a0);
+		const r0 = r / 2 / Math.cos(a1);
 		ctx.beginPath();
 		ctx.moveTo(tx, ty);
 		for (let i = 0; i < 9; i++) {
-			if (i == 0) {
-				a0 += Math.PI - a1;
-			} else if (i % 2) {
-				a0 -= a2;
-			} else {
-				a0 += Math.PI - a1 * 2;
-			}
-			tx += d * Math.cos(a0);
-			ty += d * Math.sin(a0);
-			ctx.lineTo(tx, ty);
+			a0 += a1;
+			ctx.lineTo(x + r0 * Math.cos(a0), y + r0 * Math.sin(a0));
+			a0 += a1;
+			ctx.lineTo(x + r * Math.cos(a0), y + r * Math.sin(a0));
 		}
 		ctx.closePath();
 	}
@@ -150,8 +141,8 @@
 	 */
 	function regularPolygon(ctx, x, y, r, n, a = 0) {
 		if (!ctx || n < 3) return;
-		const a1 = Math.PI * 2 / n;
 		let a0 = a - Math.PI / 2;
+		const a1 = Math.PI * 2 / n;
 		ctx.beginPath();
 		ctx.moveTo(Math.cos(a0) * r + x, Math.sin(a0) * r + y);
 		for (let i = 0; i < n; i++) {

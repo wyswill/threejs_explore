@@ -22,19 +22,16 @@ function Jmap(object) {
     let item = [];
     Object.keys(object).forEach(i => {
         let val = Jmap(object[i]);
-        if (typeof val == 'object') {
-            val.forEach(j => {
-                item.push({
-                    key: i + '.' + j.key,
-                    value: j.value
-                });
-            });
-        } else {
+        if (typeof val == 'object') val.forEach(j => {
             item.push({
-                key: i,
-                value: object[i]
+                key: i + '.' + j.key,
+                value: j.value
             });
-        }
+        });
+        else item.push({
+            key: i,
+            value: val
+        });
     });
     return item;
 }
