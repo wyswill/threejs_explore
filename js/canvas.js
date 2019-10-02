@@ -1,4 +1,11 @@
-var Canvas = (function () {
+(function () {
+	window.Canvas2D = {
+		rectRound: rectRound,
+		star4s: star4s,
+		star4: star4,
+		star5p: star5p,
+		regularPolygon: regularPolygon,
+	};
 	let canvasv = document.getElementById('contentv');
 	let canvas = canvasv.getElementsByTagName('canvas')[0];
 	let ctx = null;
@@ -7,7 +14,7 @@ var Canvas = (function () {
 		window.requestAnimationFrame(main);
 		canvas.addEventListener('mouseover', function (e) { });
 		canvas.addEventListener('mouseout', function (e) { });
-		canvas.addEventListener('mousedown', function (e) {  })
+		canvas.addEventListener('mousedown', function (e) { })
 	}
 
 	function main() {
@@ -161,10 +168,5 @@ var Canvas = (function () {
 	 */
 	function randomInt(a, b) {
 		return Math.random() * (b - a) + a;
-	}
-
-	return {
-		randomInt: randomInt,
-		rectRound: rectRound
 	}
 })();
