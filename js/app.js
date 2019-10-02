@@ -2,7 +2,7 @@
 * @Author: Admin
 * @Date:   2019-09-29 19:36:22
 * @Last Modified by:   Admin
-* @Last Modified time: 2019-10-01 04:45:08
+* @Last Modified time: 2019-10-02 10:35:25
 */
 console.log("开始了")
 
@@ -37,6 +37,14 @@ function addAttr(ele,config){
         ele.setAttribute(`${index}`,el)
     });
 }
+
+
+function hasAttr(obj,attr){
+    var bool = `${attr}` in obj;
+    return bool;
+}
+
+
 /**
  * 对字符进行大写转换
  * @param {String} args 需要转换的字符
@@ -56,11 +64,11 @@ function UpperCase(args){
 function addCss(el,config){
     var key = Object.keys;
     var cssList = key(config);
-    if(el.length!=null){
+    if(hasAttr(el,length)){
         for(let n=0;n<el.length;n++){
             addCss(el[n],config)
         }
-    }
+    }else{
     for(let i=0;i<cssList.length;i++){
         var index = cssList[i].indexOf("-")
         if(index!=-1){
@@ -69,13 +77,11 @@ function addCss(el,config){
         el.style[cssList[i]]=config[cssList[i]];
     }
 }
+}
 
 window.onload=function(){
-    var EleContent = document.getElementById("contentv");
+    // var EleContent = document.getElementById("contentv");
     let canvas = document.getElementsByTagName("canvas");
     console.log((getH()-40)+"px")
     var screenHeight=getH()-40;
-    addCss(EleContent,{
-        "height":`${screenHeight}px`
-    });
 }
