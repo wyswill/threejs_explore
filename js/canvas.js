@@ -10,15 +10,16 @@
 	let canvas = canvasv.getElementsByTagName('canvas')[0];
 	let ctx = null;
 	if (canvas.getContext) {
-		ctx = canvas.getContext('2d');
-		window.requestAnimationFrame(main);
-		canvas.addEventListener('mouseover', function (e) { });
-		canvas.addEventListener('mouseout', function (e) { });
-		canvas.addEventListener('mousedown', function (e) { })
+		ctx = canvas.getContext('webgl');
+		if (!gl) {
+			console.error('此浏览器不支持 WegGL！');
+			return;
+		}
 	}
 
 	function main() {
-		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.clearColor(0, 0, 0, 1)
+		ctx.clear(gl.COLOR_BUFFER_BIT);
 
 		window.requestAnimationFrame(main);
 	}

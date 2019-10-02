@@ -7,19 +7,50 @@
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(80, 800 / 800, 0.1, 100);
 var renderer = new THREE.WebGLRenderer();
+var fontLoader = new THREE.FontLoader();
 renderer.setSize(800, 800);
-document.body.appendChild(renderer.domElement);
-var geometry = new THREE.BoxGeometry(1, 1, 1);
+document.getElementById('contentv').appendChild(renderer.domElement);
+var font = fontLoader.load('../font/FZYanSongS-M-GB_Regular.json', function (font) {
+    scene.add(font);
+}, function (xhr) {
+    console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+}, function () {
+    console.log('An error happened');
+});
+var geometry = new THREE.TextGeometry('Hello World!', {
+    font: font,
+    size: 20,
+    height: 5
+});
 var material = new THREE.MeshBasicMaterial({
     color: 0x00ff00
 });
 var cube = new THREE.Mesh(geometry, material);
 scene.add(cube);
-camera.position.z = 5;
-var animate = function() {
+camera.position.z = 10;
+var keyword = {};
+function animate() {
     requestAnimationFrame(animate);
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
+    //rota(cube);
     renderer.render(scene, camera);
 };
-animate();
+requestAnimationFrame(animate);
+function rota(obj) {
+    if (keyword.ARROWUP || keyword.W) {
+        obj.rotation.x -= 0.01;
+    } else if (keyword.ARROWDOWN || keyword.S) {
+        obj.rotation.x += 0.01;
+    } else if (keyword.ARROWLEFT || keyword.A) {
+        obj.rotation.y -= 0.01;
+    } else if (keyword.ARROWRIGHT || keyword.D) {
+        obj.rotation.y += 0.01;
+    }
+}
+function onKeywordDownEvent(event) {
+    keyword[event.key.toUpperCase()] = true;
+}
+function onKeywordUpEvent(event) {
+    keyword[event.key.toUpperCase()] = false;
+}
+window.addEventListener('keydown', onKeywordDownEvent);
+window.addEventListener('keyup', onKeywordUpEvent);
