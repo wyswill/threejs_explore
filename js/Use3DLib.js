@@ -42,4 +42,5 @@ function animate() {
   requestAnimationFrame(animate);
   // 渲染
   renderer.render(scene, camera);
+
 }
