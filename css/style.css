@@ -2,7 +2,7 @@
 * @Author: Admin
 * @Date:   2019-09-29 19:36:39
 * @Last Modified by:   Admin
-* @Last Modified time: 2019-10-02 13:05:08
+* @Last Modified time: 2019-10-10 16:52:33
 */
 *{
     margin:0;
@@ -114,5 +114,5 @@
 }
 @font-face {
     font-family:"FiraCode";
-    src:url("../font/FiraCode-Medium.ttf");
+    src:url("../font/FiraCode-Medium.woff2");
 }
